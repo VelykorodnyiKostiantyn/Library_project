@@ -42,8 +42,9 @@ public class Book {
 	}
 	public void setBorrower(Student borrower) {
 		this.borrower = borrower;
-	}	
+	}
 	
+	public Book() {}
 	public Book(String title, String author) {
 		this.title = title;
 		this.author = author;
