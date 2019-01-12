@@ -4,14 +4,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "BOOKS")
 public class Book {
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue
 	@Column(name="ident")
 	private int ident;
 	@Column(name = "title")
 	private String title;
 	@Column(name = "author")
 	private String author;
-	@Column(name = "borrower")
+	@ManyToOne(optional = true)
+    @JoinColumn(name="FK_STUDENT_IDENT")
 	private Student borrower; 
 	
 	public int getIdent() {
