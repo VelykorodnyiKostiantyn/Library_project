@@ -39,7 +39,7 @@ public class Student {
 	public String getLastName() {
 		return lastName;
 	}
-	public void setLasttName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	
