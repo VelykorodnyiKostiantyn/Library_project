@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file = "/include/header.jsp" %>
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>display all students</title>
-</head>
+<%@include file = "/include/header.jsp" %>
 <body>
-<% List<Student> st = dataHandler.showStudents(); 
+<%  
+int ident = Integer.parseInt(request.getParameter("ident"));
+List<Student> st = dataHandler.findStudents(ident, "", "", "");
 for(Student s: st){
 	out.println("Details : "+s.getIdent()+" "+s.getFirstName()+" " + s.getLastName()+" "+ s.getEmail());%>
 	<br>
 	<%
 }
-
+dataHandler.deleteStudent(ident);
 %>
 </body>
 </html>

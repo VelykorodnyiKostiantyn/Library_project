@@ -5,10 +5,9 @@
 <%@include file = "/include/header.jsp" %>
 <body>
 <%  
-out.println("first name: " +request.getParameter("first_name"));
-out.println("last name: "+request.getParameter("last_name"));
-out.println("email: "+request.getParameter("email"));
-dataHandler.addStudent(request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email"));
+int ident = dataHandler.addStudent(request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email"));
+Student st = dataHandler.getStudentById(ident);
+out.println("Details : "+st.getIdent()+" "+st.getFirstName()+" " + st.getLastName()+" "+ st.getEmail());%>
 %>
 </body>
 </html>
