@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file = "/include/header.jsp" %>
+<%--@include file = "/include/header.jsp" --%>
+<%@include file = "/search_book.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,16 +18,19 @@
 
  <th scope="col">email</th>
 </tr>
-<% List<Student> st = dataHandler.showStudents(); 
-for(Student s: st){
+<% 
+int ident = Integer.parseInt(request.getParameter("ident"));
+int borrowerId = Integer.parseInt(request.getParameter("borrower_id"));
+List<Book> books = dataHandler.findBooks(ident, request.getParameter("title"), request.getParameter("author"), borrowerId ); 
+for(Book b: books){
 	%> <tr><td> <%
-	out.print(s.getIdent()); 
+	out.print(b.getIdent()); 
 	%> </td> <td> <% 
-	out.print( s.getFirstName());
+	out.print( b.getTitle());
 	%> </td> <td> <% 
-	out.print(s.getLastName()); 
+	out.print(b.getAuthor()); 
 	%> </td> <td> <% 
-	out.print(s.getEmail());%>
+	out.print(b.getBorrower());%>
 	</td></tr>
 		<%}%>
 </table>

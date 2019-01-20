@@ -5,25 +5,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>adding student</title>
+<title>search student</title>
 </head>
 <body>
 
 <div id="mystyle" class="myform">
-		 <form id="form" name="form" method="post" action="update_student_action.jsp">
+		 <form id="form" name="form" method="post" action="search_student_action.jsp">
 			 <h1>Enter student information for update</h1>
-			 <label>current ident: </label>
+			 <label>ident: </label>
 			 <input type="number" name="ident" id="ident" />
-			 <label>new first name</label>
+			 <label>first name</label>
 			 <input type="text" name="first_name" id="first_name" />
 			 <br>
-			 <label>new last name</label>
+			 <label>last name</label>
 			 <input type="text" name="last_name" id="last_name" />
 			 <br>
-			 <label>new email</label>
+			 <label>email</label>
 			 <input type="text" name="email" id="email" />
 			 <br>
-			 <button type="submit">Update Student</button>
+			 <button type="submit">Find Students</button>
 			 <div class="spacer"></div>
 		 </form>
 	 </div>

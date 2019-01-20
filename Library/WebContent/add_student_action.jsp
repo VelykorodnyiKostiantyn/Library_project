@@ -2,12 +2,16 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<%@include file = "/include/header.jsp" %>
+<%--@include file = "/include/header.jsp" --%>
+<%@include file = "/add_student.jsp" %>
 <body>
 <%  
 int ident = dataHandler.addStudent(request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email"));
-Student st = dataHandler.getStudentById(ident);
-out.println("Details : "+st.getIdent()+" "+st.getFirstName()+" " + st.getLastName()+" "+ st.getEmail());%>
-%>
+List<Student> st = dataHandler.findStudents(ident, "", "", "");
+for(Student s: st){
+	out.println("Details : "+s.getIdent()+" "+s.getFirstName()+" " + s.getLastName()+" "+ s.getEmail());%>
+	<br>
+	<%
+}%>
 </body>
 </html>

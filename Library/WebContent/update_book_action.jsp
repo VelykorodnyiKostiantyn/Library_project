@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 <html>
 <%--@include file = "/include/header.jsp" --%>
-<%@ include file = "/update_student.jsp" %>
+<%@ include file = "/update_book.jsp" %>
 <body>
 <%  
 int ident = Integer.parseInt(request.getParameter("ident"));
-List<Student> st = dataHandler.findStudents(ident, "", "", "");
-for(Student s: st){
-	out.println("Details : "+s.getIdent()+" "+s.getFirstName()+" " + s.getLastName()+" "+ s.getEmail());%>
+List<Book> books = dataHandler.findBooks(ident, "", "", 0);
+for(Book b: books){
+	out.println("Details : "+b.getIdent()+" "+b.getTitle()+" " + b.getAuthor()+" "+ b.getBorrower());%>
 	<br>
 	<%
 }
 dataHandler.updateStudent(ident,request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email"));
-st = dataHandler.findStudents(ident, "", "", "");
-for(Student s: st){
-	out.println("Details : "+s.getIdent()+" "+s.getFirstName()+" " + s.getLastName()+" "+ s.getEmail());%>
+books = dataHandler.findBooks(ident, "", "", 0);
+for(Book b: books){
+	out.println("Details : "+b.getIdent()+" "+b.getTitle()+" " + b.getAuthor()+" "+ b.getBorrower());%>
 	<br>
 	<%
 }

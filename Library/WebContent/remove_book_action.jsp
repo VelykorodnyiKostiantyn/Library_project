@@ -3,17 +3,17 @@
 <!DOCTYPE html>
 <html>
 <%--@include file = "/include/header.jsp" --%>
-<%@include file = "/remove_student.jsp" %>
+<%@include file = "/remove_book.jsp" %>
 <body>
 <%  
 int ident = Integer.parseInt(request.getParameter("ident"));
-List<Student> st = dataHandler.findStudents(ident, "", "", "");
-for(Student s: st){
-	out.println("Details : "+s.getIdent()+" "+s.getFirstName()+" " + s.getLastName()+" "+ s.getEmail());%>
+List<Book> books = dataHandler.findBooks(ident, "", "", 0);
+for(Book b: books){
+	out.println("Details : "+b.getIdent()+" "+b.getTitle()+" " + b.getAuthor()+" "+ b.getBorrower());%>
 	<br>
 	<%
 }
-dataHandler.deleteStudent(ident);
+dataHandler.deleteBook(ident);
 %>
 </body>
 </html>

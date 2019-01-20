@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file = "/include/header.jsp" %>
+<%--@include file = "/include/header.jsp" --%>
+<%@include file = "/search_student.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,9 @@
 
  <th scope="col">email</th>
 </tr>
-<% List<Student> st = dataHandler.showStudents(); 
+<% 
+int ident = Integer.parseInt(request.getParameter("ident"));
+List<Student> st = dataHandler.findStudents(ident, request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email") ); 
 for(Student s: st){
 	%> <tr><td> <%
 	out.print(s.getIdent()); 
