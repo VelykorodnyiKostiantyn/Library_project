@@ -6,6 +6,7 @@
 <%@include file = "/add_book.jsp" %>
 <body>
 <%  
+
 int ident = dataHandler.addBook(request.getParameter("title"), request.getParameter("author"));
 List<Book> book = dataHandler.findBooks(ident, "", "", 0);
 for(Book b: book){
