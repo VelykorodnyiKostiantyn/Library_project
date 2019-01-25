@@ -8,4 +8,4 @@ public void jspInit(){
 	data_handling.DataHandler dh = new data_handling.DataHandler();
 	dh.createTables();
 }
-%>>
+%>

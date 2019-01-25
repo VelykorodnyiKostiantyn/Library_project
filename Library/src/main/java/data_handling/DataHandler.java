@@ -4,7 +4,8 @@ import java.util.List;
 import javax.persistence.criteria.*;
 //import javax.persistence.*;
 import org.hibernate.Session;
-//import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.Criteria;
 
 public class DataHandler {
 
@@ -100,19 +101,16 @@ public class DataHandler {
 	
 	public List<Student> findStudents(int ident, String firstName, String lastName, String email){
 		Session session = HibernateUtil.getSessionFactory().openSession();		
-		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		CriteriaQuery<Student> qry = criteriaBuilder.createQuery(Student.class);
-		Root<Student> root = qry.from(Student.class);		
-		Predicate conditions =criteriaBuilder.and(criteriaBuilder.like( root.get("firstName"), wrapToLike(firstName)),
-				criteriaBuilder.like( root.get("lastName"), wrapToLike(lastName)),
-				criteriaBuilder.like( root.get("email"), wrapToLike(email)));
-		if (ident >0 ) {
-		conditions=criteriaBuilder.and(conditions, criteriaBuilder.equal(root.get("ident"), ident));
-		}
-		qry.select(root).where(conditions);		
-		session.beginTransaction();
-		List<Student> students =(List<Student>)session.createQuery(qry).list();
+		Criteria criteria = session.createCriteria(Student.class)
+				.add(Restrictions.like("firstName", wrapToLike(firstName)))
+				.add(Restrictions.like("lastName", wrapToLike(firstName)))
+				.add(Restrictions.like("email", wrapToLike(firstName)))
+				;
+		if (ident > 0 ) {
+			criteria.add(Restrictions.eq("ident", ident));
+		}	
 
+		List<Student> students = criteria.list();
 		session.close();
 		return students;
 	}
@@ -146,7 +144,7 @@ public class DataHandler {
 		Book book = (Book)session.load(Book.class, ident);		
 		if (title != "" && title != null) {book.setTitle(title);}
 		if (author != "" && author != null) {book.setAuthor(author);}
-		if (student_ref >0) {book.setBorrower(session.load(Student.class, student_ref));}
+		if (student_ref >0) {book.setBorrower((Student)session.load(Student.class, student_ref));}
 		session.persist(book);
 		session.getTransaction().commit();
 		session.close(); 			
@@ -171,23 +169,21 @@ public class DataHandler {
 	}
 	public List<Book> findBooks(int ident, String title, String author, int student_ref ){
 		Session session = HibernateUtil.getSessionFactory().openSession();		
-		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		CriteriaQuery<Book> qry = criteriaBuilder.createQuery(Book.class);
-		Root<Book> root = qry.from(Book.class);		
-		Predicate conditions =criteriaBuilder.and(criteriaBuilder.like( root.get("title"), wrapToLike(title)),
-				criteriaBuilder.like( root.get("author"), wrapToLike(author)));
-		if (ident >0 ) {
-		conditions=criteriaBuilder.and(conditions, criteriaBuilder.equal(root.get("ident"), ident));
-		}
+		Criteria criteria = session.createCriteria(Book.class)
+				.add(Restrictions.like("title", wrapToLike(title)))
+				.add(Restrictions.like("author", wrapToLike(author)))
+				;
+		if (ident > 0 ) {
+			criteria.add(Restrictions.eq("ident", ident));
+		}	
 		if (student_ref >0 ) {
-		conditions=criteriaBuilder.and(conditions, criteriaBuilder.equal(root.get("borrower"), student_ref));
+			criteria.add(Restrictions.eq("student_ref", student_ref));
 		}
-		qry.select(root).where(conditions);		
 		session.beginTransaction();
-		List<Book> students =(List<Book>)session.createQuery(qry).list();
+		List<Book> books =(List<Book>)criteria.list();
 
 		session.close();
-		return students;
+		return books;
 	}
 	public Book getBookById(int ident) {
 		Book book = null;
