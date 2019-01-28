@@ -2,8 +2,7 @@ package data_handling;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
  
 public class HibernateUtil {
      

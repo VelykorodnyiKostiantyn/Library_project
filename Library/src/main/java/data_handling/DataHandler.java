@@ -1,11 +1,12 @@
 package data_handling;
 
 import java.util.List;
-import javax.persistence.criteria.*;
+//import javax.persistence.criteria.*;
 //import javax.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.Criteria;
+import data_handling.model.*;
 
 public class DataHandler {
 

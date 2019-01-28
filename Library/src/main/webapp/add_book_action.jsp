@@ -8,7 +8,7 @@
 <%  
 
 int ident = dataHandler.addBook(request.getParameter("title"), request.getParameter("author"));
-List<Book> book = dataHandler.findBooks(ident, "", "", 0);
+List<Book>book = dataHandler.findBooks(ident, "", "", 0);
 for(Book b: book){
 	out.println("Details : "+b.getIdent()+" "+b.getTitle()+" " + b.getAuthor()+" "+ b.getBorrower());%>
 	<br>

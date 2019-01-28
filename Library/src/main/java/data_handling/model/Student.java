@@ -1,4 +1,4 @@
-package data_handling;
+package data_handling.model;
 import javax.persistence.*;
 
 @Entity
