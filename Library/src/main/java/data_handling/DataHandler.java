@@ -200,6 +200,5 @@ public class DataHandler {
 	//utility function
 	public static String wrapToLike(String value) {
 	    return value == null ? "%" : "%"+value+"%";
-	}
-	
+	}	
 }

@@ -16,30 +16,35 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.8.Final</version>
+			<version>5.3.7.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<version>4.0.5.Final</version>
 		</dependency>
-
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>5.1.4.RELEASE</version>
 		</dependency>
-		<dependency> 
-    		<groupId>org.springframework</groupId> 
-    		<artifactId>org.springframework.context</artifactId> 
-    		<version>3.2.2.RELEASE</version> 
-		</dependency> 		
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-dbcp</artifactId>
-			<version>8.5.37</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.1.4.RELEASE</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework</groupId> -->
+<!-- 			<artifactId>spring-expression</artifactId> -->
+<!-- 			<version>5.1.4.RELEASE</version> -->
+<!-- 		</dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.tomcat</groupId> -->
+		<!-- <artifactId>tomcat-dbcp</artifactId> -->
+		<!-- <version>8.5.37</version> -->
+		<!-- </dependency> -->
 	</dependencies>
 
 	<build>
@@ -70,7 +75,13 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<warSourceDirectory>target/m2e-wtp/web-resources</warSourceDirectory>
 				</configuration>
-			</plugin>		
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
 		</plugins>
 	</build>
 </project>
