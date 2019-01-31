@@ -2,10 +2,9 @@ package data_handling.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,15 +32,22 @@ public class StudentDAOImpl implements StudentDAO {
 	public List<Student> searchStudent(Student student) {
 		List<Student> students = null;
 		Session session = sessionFactory.getCurrentSession();		
-		Criteria criteria = session.createCriteria(Student.class)
-				.add(Restrictions.like("firstName", wrapToLike(student.getFirstName())))
-				.add(Restrictions.like("lastName", wrapToLike(student.getLastName())))
-				.add(Restrictions.like("email", wrapToLike(student.getEmail())))
-				.add(Restrictions.like("ident", student.getIdent()))
-				;	
-		students = criteria.list();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
+		 		CriteriaQuery<Student> qry = criteriaBuilder.createQuery(Student.class); 
+		 		Root<Student> root = qry.from(Student.class);		 
+		 		Predicate conditions =criteriaBuilder.and(criteriaBuilder.like( root.get("firstName"), wrapToLike(student.getFirstName())), 
+		 				criteriaBuilder.like( root.get("lastName"), wrapToLike(student.getLastName())), 
+		 				criteriaBuilder.like( root.get("email"), wrapToLike(student.getEmail()))); 
+		 		if (student.getIdent() >0 ) { 
+		 		conditions=criteriaBuilder.and(conditions, criteriaBuilder.equal(root.get("ident"), student.getIdent())); 
+		 		} 
+		qry.select(root).where(conditions);		 
+		students =(List<Student>)session.createQuery(qry).list();
 		return students;			
 	}
+	
+	//doesn't work properly, lazy fetch issue
+	//any way to fix it aside from eager fetch?	
 	@Override
 	public Student getStudent(int ident) {
 		Student student = null;

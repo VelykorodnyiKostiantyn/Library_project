@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Table(name = "BOOKS")
 @SequenceGenerator(
 		  name = "BOOK_SEQ_GENERATOR",
-		  sequenceName = "hibernate_sequence",
+		  sequenceName = "BOOK_SEQ",
 		  initialValue = 1, allocationSize = 1)
 public class Book {
 	@Id 
@@ -52,5 +52,19 @@ public class Book {
 	public Book(String title, String author) {
 		this.title = title;
 		this.author = author;
+	}
+	
+	public boolean equals(Book book) {
+		return this.getIdent() == book.getIdent() ? true: false;
+	}
+	
+	@Override
+	public String toString() {
+		String result = "ident: "+this.getIdent()+", Title: "+ this.getTitle() + ", Author: "+ this.getAuthor() + ", Borrower: ";
+		if (this.getBorrower() != null) {
+			result += this.getBorrower().getIdent();
+			//result += this.getBorrower().toString();
+		}
+		return result;
 	}
 }

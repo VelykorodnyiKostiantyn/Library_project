@@ -10,15 +10,15 @@
 <body>
 
 <div id="mystyle" class="myform">
-		 <form id="form" name="form" method="post" action="update_student_action.jsp">
+		 <form id="form" name="form" method="post" action="update_book_action.jsp">
 			 <h1>Enter book information for update</h1>
 			 <label>current ident: </label>
 			 <input type="number" name="ident" id="ident" />
 			 <label>new title</label>
-			 <input type="text" name="first_name" id="first_name" />
+			 <input type="text" name="title" id="title" />
 			 <br>
 			 <label>new author</label>
-			 <input type="text" name="last_name" id="last_name" />
+			 <input type="text" name="author" id="author" />
 			 <br>
 			 <label>new borrower id</label>
 			 <input type="text" name="borrower_id" id="borrower_id" />

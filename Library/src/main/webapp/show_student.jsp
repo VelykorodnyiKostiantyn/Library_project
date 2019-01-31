@@ -17,7 +17,7 @@
 
  <th scope="col">email</th>
 </tr>
-<% List<Student> st = dataHandler.showStudents(); 
+<% List<Student> st = ApplicationContextProvider.getApplicationContext().getBean(StudentManager.class).searchStudent(new Student("","","")); 
 for(Student s: st){
 	%> <tr><td> <%
 	out.print(s.getIdent()); 

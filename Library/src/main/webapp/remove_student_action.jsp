@@ -6,14 +6,18 @@
 <%@include file = "/remove_student.jsp" %>
 <body>
 <%  
-int ident = Integer.parseInt(request.getParameter("ident"));
-List<Student> st = dataHandler.findStudents(ident, "", "", "");
+int ident = 0;
+try {
+ident = Integer.parseInt(request.getParameter("ident"));
+} catch (Exception e) {}
+Student student = new Student("","","");
+student.setIdent(ident);
+List<Student> st = ApplicationContextProvider.getApplicationContext().getBean(StudentManager.class).searchStudent(student);
 for(Student s: st){
-	out.println("Details : "+s.getIdent()+" "+s.getFirstName()+" " + s.getLastName()+" "+ s.getEmail());%>
-	<br>
-	<%
+	out.println(s.toString());
+	ApplicationContextProvider.getApplicationContext().getBean(StudentManager.class).deleteStudent(s);
+	%><br><%
 }
-dataHandler.deleteStudent(ident);
 %>
 </body>
 </html>

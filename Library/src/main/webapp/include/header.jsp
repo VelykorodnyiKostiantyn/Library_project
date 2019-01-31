@@ -30,6 +30,5 @@
 			 <button type="submit">Remove Student</button>
 		 </form>
 
-
 </body>
 </html>

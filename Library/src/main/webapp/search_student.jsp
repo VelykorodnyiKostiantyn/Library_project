@@ -11,7 +11,7 @@
 
 <div id="mystyle" class="myform">
 		 <form id="form" name="form" method="post" action="search_student_action.jsp">
-			 <h1>Enter student information for update</h1>
+			 <h1>Enter student information</h1>
 			 <label>ident: </label>
 			 <input type="number" name="ident" id="ident" />
 			 <label>first name</label>

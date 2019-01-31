@@ -9,6 +9,7 @@
 <title>Kind of a home page</title>
 </head>
 <body>
-      <jsp:forward page="/home.jsp" />
+  someone left their sign here
+  					V.K.
 </body>
 </html>

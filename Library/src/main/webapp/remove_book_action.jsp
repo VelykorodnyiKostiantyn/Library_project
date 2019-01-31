@@ -6,14 +6,17 @@
 <%@include file = "/remove_book.jsp" %>
 <body>
 <%  
-int ident = Integer.parseInt(request.getParameter("ident"));
-List<Book> books = dataHandler.findBooks(ident, "", "", 0);
-for(Book b: books){
-	out.println("Details : "+b.getIdent()+" "+b.getTitle()+" " + b.getAuthor()+" "+ b.getBorrower());%>
-	<br>
-	<%
+int ident = 0;
+try {
+ident = Integer.parseInt(request.getParameter("ident"));
+} catch (Exception e) {}
+Book book = new Book("", "");
+book.setIdent(ident);
+for(Book b: ApplicationContextProvider.getApplicationContext().getBean(BookManager.class).searchBooks(book)){
+	out.println(b.toString());
+	ApplicationContextProvider.getApplicationContext().getBean(BookManager.class).deleteBook(b);
+	%><br><%
 }
-dataHandler.deleteBook(ident);
 %>
 </body>
 </html>

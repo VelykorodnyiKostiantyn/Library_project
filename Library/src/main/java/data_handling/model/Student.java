@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Table(name = "STUDENTS")
 @SequenceGenerator(
 		  name = "STUDENT_SEQ_GENERATOR",
-		  sequenceName = "MYSEQ",
+		  sequenceName = "STUDENT_SEQ",
 		  initialValue = 1, allocationSize = 1)
 public class Student {
 	@Id
@@ -52,5 +52,14 @@ public class Student {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public boolean equals(Student student) {
+		return this.getIdent() == student.getIdent() ? true: false;
+	}
+	
+	@Override
+	public String toString() {
+		return "ident: "+this.getIdent()+", First Name: "+ this.getFirstName() + ", Last Name: "+ this.getLastName() + ", Email: " + this.getEmail();
 	}
 }

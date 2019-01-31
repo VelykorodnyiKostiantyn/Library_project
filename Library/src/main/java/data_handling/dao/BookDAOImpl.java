@@ -2,14 +2,12 @@ package data_handling.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import data_handling.HibernateUtil;
 import data_handling.model.Book;
 import data_handling.model.Student;
 
@@ -35,13 +33,19 @@ public class BookDAOImpl implements BookDAO {
 	public List<Book> searchBooks(Book book){
 		List<Book> books = null;
 		Session session = sessionFactory.getCurrentSession();		
-		Criteria criteria = session.createCriteria(Student.class)
-				.add(Restrictions.like("title", wrapToLike(book.getTitle())))
-				.add(Restrictions.like("author", wrapToLike(book.getAuthor())))
-				.add(Restrictions.like("borrower", book.getBorrower()))
-				.add(Restrictions.like("ident", book.getIdent()))
-				;	
-		books = criteria.list();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 
+		 		CriteriaQuery<Book> qry = criteriaBuilder.createQuery(Book.class); 
+		 		Root<Book> root = qry.from(Book.class);		 
+		 		Predicate conditions =criteriaBuilder.and(criteriaBuilder.like( root.get("title"), wrapToLike(book.getTitle())), 
+		 				criteriaBuilder.like( root.get("author"), wrapToLike(book.getAuthor()))); 
+		 		if (book.getIdent() >0 ) { 
+		 		conditions=criteriaBuilder.and(conditions, criteriaBuilder.equal(root.get("ident"), book.getIdent())); 
+		 		} 
+		 		if (book.getBorrower() != null ) { 	 			
+		 		conditions=criteriaBuilder.and(conditions, criteriaBuilder.equal(root.get("borrower"), book.getBorrower())); 
+		 		} 
+		 		qry.select(root).where(conditions);		 
+		books = (List<Book>)session.createQuery(qry).list();
 		return books;
 	}
 	@Override
