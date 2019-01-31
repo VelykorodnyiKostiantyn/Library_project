@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import data_handling.model.*;
 import data_handling.service.*;
+import data_handling.*;
 
 public class DataHandling {
 	public static void main (String[] args) {
@@ -15,6 +16,9 @@ public class DataHandling {
 	    }
 	    
 	    Object bm = context.getBean("bookManagerImpl");
+	    DBInit db =(DBInit)context.getBean("dBInit");
+	    
+	    db.createTables();
 	    
 	    
 	    StudentManager sm = (StudentManager)context.getBean("studentManagerImpl");

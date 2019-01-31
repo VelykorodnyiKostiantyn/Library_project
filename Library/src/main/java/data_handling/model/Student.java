@@ -3,9 +3,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "STUDENTS")
+@SequenceGenerator(
+		  name = "STUDENT_SEQ_GENERATOR",
+		  sequenceName = "MYSEQ",
+		  initialValue = 1, allocationSize = 1)
 public class Student {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENT_SEQ_GENERATOR")
 	@Column(name="IDENT")
 	private int ident;
 	@Column(name = "FIRST_NAME")

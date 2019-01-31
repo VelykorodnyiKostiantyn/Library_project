@@ -3,9 +3,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "BOOKS")
+@SequenceGenerator(
+		  name = "BOOK_SEQ_GENERATOR",
+		  sequenceName = "hibernate_sequence",
+		  initialValue = 1, allocationSize = 1)
 public class Book {
 	@Id 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOOK_SEQ_GENERATOR")
 	@Column(name="ident")
 	private int ident;
 	@Column(name = "title")

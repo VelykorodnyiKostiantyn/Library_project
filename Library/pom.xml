@@ -18,11 +18,12 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.3.7.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate.common</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>4.0.5.Final</version>
-		</dependency>
+<dependency> 
+    <groupId>org.hibernate.common</groupId> 
+    <artifactId>hibernate-commons-annotations</artifactId> 
+    <version>5.1.0.Final</version> 
+</dependency> 
+
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
