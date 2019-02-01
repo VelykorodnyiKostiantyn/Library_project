@@ -18,7 +18,7 @@ for(Book b: ApplicationContextProvider.getApplicationContext().getBean(BookManag
 	ApplicationContextProvider.getApplicationContext().getBean(BookManager.class).deleteBook(b);
 	%><br><%
 }
-} else {out.println("Wrong book identifier");}
+} else {out.println("Wrong Book identifier");}
 } catch (Exception e) {
 	e.printStackTrace();
 }
