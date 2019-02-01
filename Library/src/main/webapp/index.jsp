@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<%@ page import = "java.io.*,java.util.*" %>
+<%@include file = "/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,7 @@
 <title>Kind of a home page</title>
 </head>
 <body>
-  someone left their sign here
+  someone left their sign here </br>
   					V.K.
 </body>
 </html>

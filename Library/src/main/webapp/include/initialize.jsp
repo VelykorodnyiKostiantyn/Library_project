@@ -6,9 +6,12 @@
 
 <%!
 public void jspInit(){
+	if (ApplicationContextProvider.getApplicationContext() == null){
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring_config.xml");
 	data_handling.DBInit db = ApplicationContextProvider.getApplicationContext().getBean(DBInit.class);
 	db.dropTables();
 	db.createTables();
+	System.out.println("Database initialized");
+	}
 }
 %>

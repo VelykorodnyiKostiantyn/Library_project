@@ -14,6 +14,7 @@
 			 <h1>Enter student information</h1>
 			 <label>ident: </label>
 			 <input type="number" name="ident" id="ident" />
+			 <br>
 			 <label>first name</label>
 			 <input type="text" name="first_name" id="first_name" />
 			 <br>

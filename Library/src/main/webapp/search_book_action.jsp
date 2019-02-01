@@ -14,19 +14,24 @@
 int ident = 0;
 int borrowerId =0;
 
+Book book = new Book(request.getParameter("title"), request.getParameter("author"));
+
 try {
 ident = Integer.parseInt(request.getParameter("ident"));
+book.setIdent(ident);
 } catch (Exception e) {}
+
 try {
 borrowerId = Integer.parseInt(request.getParameter("borrower_id"));
-} catch (Exception e) {}
-out.print("ident: "+ ident +"borrowerId"+ borrowerId);
 Student student= new Student("","", "");
 student.setIdent(borrowerId);
-Book book = new Book(request.getParameter("title"), request.getParameter("author"));
-book.setIdent(ident);
 List<Student> s = ApplicationContextProvider.getApplicationContext().getBean(StudentManager.class).searchStudent(student);
 book.setBorrower(s.get(0));
+} catch (Exception e) {
+	out.print("Student not found");
+}
+
+out.print("ident: "+ ident +" borrowerId: "+ borrowerId);
 %>
 <table>
 <tr>

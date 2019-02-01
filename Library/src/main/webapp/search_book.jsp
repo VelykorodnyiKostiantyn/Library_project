@@ -11,9 +11,10 @@
 
 <div id="mystyle" class="myform">
 		 <form id="form" name="form" method="post" action="search_book_action.jsp">
-			 <h1>Enter book information for update</h1>
+			 <h1>Enter book information</h1>
 			 <label>ident: </label>
 			 <input type="number" name="ident" id="ident" />
+			 <br>
 			 <label>title</label>
 			 <input type="text" name="title" id="title" />
 			 <br>

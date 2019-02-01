@@ -20,12 +20,11 @@
 </tr>
 <% 
 int ident = 0;
+Student student = new Student(request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email"));
 try {
 ident = Integer.parseInt(request.getParameter("ident"));
-} catch (Exception e) {}
-
-Student student = new Student(request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("email"));
 student.setIdent(ident);
+} catch (Exception e) {}
 List<Student> st = ApplicationContextProvider.getApplicationContext().getBean(StudentManager.class).searchStudent(student);
 for(Student s: st){
 	%> <tr><td> <%
