@@ -2,6 +2,7 @@ package data_handling.service;
 
 import java.util.List;
 import data_handling.model.Book;
+//can autowired do import automatically?
 import data_handling.dao.BookDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
