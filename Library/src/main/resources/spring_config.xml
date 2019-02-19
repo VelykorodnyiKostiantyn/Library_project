@@ -17,10 +17,6 @@ http://www.springframework.org/schema/mvc
 			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-	<bean id="applicationContextProvider"
-		class="data_handling.ApplicationContextProvider" />
-	<bean id="dBInit" class="data_handling.DBInit">
-	</bean>
 
 	<context:component-scan
 		base-package="data_handling" />

@@ -7,6 +7,11 @@
 	<artifactId>Library</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -24,11 +29,6 @@
 			<version>5.1.0.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>5.1.4.RELEASE</version>
@@ -43,11 +43,16 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.1.4.RELEASE</version>
 		</dependency>
-		<dependency> 
-		    <groupId>javax.servlet.jsp.jstl</groupId> 
-    		<artifactId>jstl-api</artifactId> 
-    		<version>1.2</version> 
-		</dependency> 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl-api</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -70,23 +75,15 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.1</version>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<warSourceDirectory>target/m2e-wtp/web-resources</warSourceDirectory>
+					<webResources>
+						<resources>
+							<directory>src/main/webapp</directory>
+						</resources>
+					</webResources>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
-			
-			                <!-- configure Eclipse workspace -->
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-eclipse-plugin</artifactId>
-			<version>2.9</version>
-			<configuration>
-				<downloadSources>true</downloadSources>
-				<downloadJavadocs>true</downloadJavadocs>
-				<wtpversion>2.0</wtpversion>
-				<wtpContextName>spring2</wtpContextName>
-			</configuration>
-		</plugin>
+
 		</plugins>
 	</build>
 </project>
