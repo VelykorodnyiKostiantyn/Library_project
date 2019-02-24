@@ -1,4 +1,6 @@
 package data_handling.model;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +20,9 @@ public class Student {
 	private String lastName;
 	@Column(name = "EMAIL")
 	private String email;
+	@OneToMany(mappedBy="borrower")
+	private Set<Book> books;
+	
 	
 	public Student() {}
 	public Student(String firstName, String lastName, String email) {
@@ -52,6 +57,13 @@ public class Student {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Set<Book> getBooks() {
+		return books;
+	}
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 	
 	public boolean equals(Student student) {

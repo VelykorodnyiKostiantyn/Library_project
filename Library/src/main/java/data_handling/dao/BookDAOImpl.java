@@ -51,6 +51,7 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public Book getBook(int ident) {
 		Book book = null;
+		book = (Book)sessionFactory.getCurrentSession().get(Book.class, ident);
 		return book;
 	}
 	

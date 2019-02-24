@@ -51,7 +51,7 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public Student getStudent(int ident) {
 		Student student = null;
-		student = (Student)sessionFactory.getCurrentSession().load(Student.class, ident);
+		student = (Student)sessionFactory.getCurrentSession().get(Student.class, ident);
 		return student;
 	}
 	
