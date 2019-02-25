@@ -101,7 +101,7 @@ public class StudentController {
 	public String studentEditBooks(@PathVariable int studentId ,ModelMap model) {
 		Student student = studentManager.getStudent(studentId);
 		model.addAttribute("student", student );		
-		List<Book> books = bookManager.searchBooks(new Book());
+		List<Book> books = bookManager.searchBook(new Book());
 		for (Book b : books) {
 			if (b.getBorrower() != null) {
 				books.remove(b);

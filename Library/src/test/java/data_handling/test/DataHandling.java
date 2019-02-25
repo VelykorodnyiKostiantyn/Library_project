@@ -61,19 +61,19 @@ public class DataHandling {
 		Book book3 = new Book ("4 hour workweek", "Tom Ferret");
 		bm.addBook(book3);
 		bm.addBook(new Book("The Anarchist Cookbook", "William Powell"));
-		for(Book b: bm.searchBooks(new Book ("", "") )){
+		for(Book b: bm.searchBook(new Book ("", "") )){
 			System.out.println(b.toString());
 		}
 		book3.setAuthor("Tim Ferris");
 		bm.updateBook(book3);
 		bm.deleteBook(book1);
-		for(Book b: bm.searchBooks(new Book ("", "") )){
+		for(Book b: bm.searchBook(new Book ("", "") )){
 			System.out.println(b.toString());
 		}
 		Book book4 = new Book ("", "");
 		book4.setBorrower(student1);
 		System.out.println(book4.toString());
-		for(Book b: bm.searchBooks(book4)){
+		for(Book b: bm.searchBook(book4)){
 			System.out.println(b.toString());
 		}
 	} 

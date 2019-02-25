@@ -6,6 +6,6 @@ public interface BookDAO {
 	public void addBook(Book book);
 	public void updateBook(Book book);
 	public void deleteBook(Book book);
-	public List<Book> searchBooks(Book book);
+	public List<Book> searchBook(Book book);
 	public Book getBook(int ident);
 }

@@ -30,7 +30,7 @@ public class BookDAOImpl implements BookDAO {
 		sessionFactory.getCurrentSession().delete(book);
 	}
 	@Override
-	public List<Book> searchBooks(Book book){
+	public List<Book> searchBook(Book book){
 		List<Book> books = null;
 		Session session = sessionFactory.getCurrentSession();		
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder(); 

@@ -31,8 +31,8 @@ public class BookManagerImpl implements BookManager {
 	}
 	@Override
 	@Transactional
-	public List<Book> searchBooks(Book book){
-		return bookDAO.searchBooks(book);
+	public List<Book> searchBook(Book book){
+		return bookDAO.searchBook(book);
 	}
 	@Override
 	@Transactional
