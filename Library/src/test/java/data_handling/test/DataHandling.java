@@ -21,7 +21,7 @@ public class DataHandling {
 
 	    //create DB tables
 	    //have to check how auto DDL works in hibernate
-	    DBInit db =ApplicationContextProvider.getApplicationContext().getBean(DBInit.class);
+	    DBInit db =context.getBean(DBInit.class);
 	    db.dropTables();
 	    db.createTables();
 	    
