@@ -8,11 +8,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Student List</title>
+<title>Book List</title>
 </head>
 <body>
         <form:form method="POST"
-          action="." modelAttribute="book">
+          action="books" modelAttribute="book">
              <table>
                 <tr>
                     <td><form:label path="title">Title</form:label></td>
@@ -39,7 +39,7 @@
                 	<td><c:out value="${b.ident}"></c:out></td>
                     <td><c:out value="${b.title}" /> </td>
                     <td><c:out value="${b.author}" /> </td>
-                    <td><c:out value="${b.borrower.lastName} ${b.borrower.firstName}" /> </td>
+                    <td><c:out value="${b.borrowerLastName} ${b.borrowerFirstName}" /> </td>
                     <td> <a href="books/${b.ident}/edit">edit</a></td>
                     <td> <a href="books/${b.ident}/delete">delete</a></td>
                 </tr>

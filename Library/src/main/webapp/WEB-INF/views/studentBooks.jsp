@@ -12,26 +12,26 @@
 </head>
 <body>
 
-	<h3>Student borrowed books:</h3>
-	<form:form action="return_books" method="post" modelAttribute="student">
-		<form:select path="books" multiple="true">
-			<c:forEach var="b" items="${student.books}">
-				<form:option value="${b.title}" selected="selected">${b.title}</form:option>
+	<form:form action="manage_books" method="post" modelAttribute="form">
+		<h3>Managing books for:</h3>
+		<form:label path="student.firstName">${student.firstName} </form:label>
+		<form:label path="student.lastName">${student.lastName}</form:label>
+		<form:hidden path="student.ident"/>
+		<h5>Student borrowed books:</h5>
+		<form:select path="removeBooksIdent" multiple="true">
+			<c:forEach var="b" items="${form.student.books}">
+				<form:option value="${b.ident}" selected="selected">${b.title}</form:option>
 			</c:forEach>
 		</form:select>
 		</br>
-		<input type="submit" value="return books" />
-	</form:form>
-
-	<h3>Available books:</h3>
-	<form:form action="borrow_books" method="post" modelAttribute="student">
-		<form:select path="books" multiple="true">
-			<c:forEach var="b" items="${books}">
-				<form:option value="b">${b.title}</form:option>
+		<h5>Available books:</h5>
+		<form:select path="addBooksIdent" multiple="true">
+			<c:forEach var="b" items="${form.addBooks}">
+				<form:option value="${b.ident}">${b.title}</form:option>
 			</c:forEach>
 		</form:select>
 		</br>
-		<input type="submit" value="add books" />
+		<input type="submit" value="save" />
 	</form:form>
 
 </body>

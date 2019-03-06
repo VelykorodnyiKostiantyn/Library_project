@@ -1,8 +1,11 @@
 package data_handling.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import data_handling.model.Student;
 import data_handling.dao.StudentDAO;
+import data_handling.dto.StudentDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -11,31 +14,37 @@ import org.springframework.stereotype.Service;
 public class StudentManagerImpl implements StudentManager {
 	@Autowired
 	private StudentDAO studentDAO;
+	@Autowired
+	private ModelDtoMapper mapper;
 	
 	@Override
 	@Transactional
-	public void addStudent(Student student) {
-		studentDAO.addStudent(student);
+	public void addStudent(StudentDto studentDto) {
+		studentDAO.addStudent(mapper.studentToModel(studentDto));
 	}
 	@Override
 	@Transactional
-	public void updateStudent(Student student) {
-		studentDAO.updateStudent(student);
+	public void updateStudent(StudentDto studentDto) {
+		studentDAO.updateStudent(mapper.studentToModel(studentDto));
 	}
 	@Override
 	@Transactional
-	public void deleteStudent(Student student) {
-		studentDAO.deleteStudent(student);
+	public void deleteStudent(StudentDto studentDto) {
+		studentDAO.deleteStudent(mapper.studentToModel(studentDto));
 	}
 	@Override
 	@Transactional
-	public List<Student> searchStudent(Student student){
-		return studentDAO.searchStudent(student);
+	public List<StudentDto> searchStudent(StudentDto studentDto){
+		List<StudentDto> students = new ArrayList<StudentDto>();
+		for (Student s: studentDAO.searchStudent(mapper.studentToModel(studentDto))) {
+			students.add(mapper.studentToDto(s));
+		}
+		return students;
 	}
 	@Override
 	@Transactional
-	public Student getStudent(int ident) {
-		return studentDAO.getStudent(ident);
+	public StudentDto getStudent(int ident) {
+		return mapper.studentToDto(studentDAO.getStudent(ident));
 	}
 
 }

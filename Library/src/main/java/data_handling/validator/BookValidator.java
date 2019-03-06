@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import data_handling.model.Book;
+import data_handling.dto.BookDto;
 
 
 @Component
@@ -13,7 +13,7 @@ public class BookValidator implements Validator {
 
    @Override
    public boolean supports(Class<?> c) {
-      return Book.class.equals(c);
+      return BookDto.class.equals(c);
    }
 
    @Override

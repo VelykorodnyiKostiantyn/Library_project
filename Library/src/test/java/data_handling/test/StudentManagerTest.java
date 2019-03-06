@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import data_handling.dao.StudentDAO;
+import data_handling.dao.*;
 import data_handling.model.Student;
 import data_handling.service.StudentManager;
 
-@RunWith(JMockit.class)
+
 public class StudentManagerTest {
 
 	@Tested
@@ -28,49 +28,60 @@ public class StudentManagerTest {
 	
 	@Injectable
 	private StudentDAO studentDAO;
+
+	
 	
 	@Test
-	public void testAddStudentMethod (@Mocked Student student) {
-		studentManager.addStudent(student);
-		new Verifications() {{
-			studentDAO.addStudent(student);
-		}};				
+	public void testAddStudentMethod () {
+		System.out.println(createStudent());
+		new Expectations() {{
+			studentDAO.addStudent(createStudent());
+		}};		
+		studentManager.addStudent(createStudent());
+		
 	}
 	
 	@Test
-	public void testUpdateStudentMethod (@Mocked Student student) {
-		studentManager.updateStudent(student);
+	public void testUpdateStudentMethod () {
 		new Verifications() {{
-			studentDAO.updateStudent(student);
+			studentDAO.updateStudent(createStudent());
+		}};		
+		studentManager.updateStudent(createStudent());	
+	}
+	
+	@Test
+	public void testDeleteStudentMethod () {
+		studentManager.deleteStudent(createStudent());
+		new Verifications() {{
+			studentDAO.deleteStudent(createStudent());
 		}};			
 	}
 	
 	@Test
-	public void testDeleteStudentMethod (@Mocked Student student) {
-		studentManager.deleteStudent(student);
-		new Verifications() {{
-			studentDAO.deleteStudent(student);
-		}};			
-	}
-	
-	@Test
-	public void testSearchStudentMethod (@Mocked Student student) {
-		List<Student> students =new ArrayList<Student>(Arrays.asList(student));
+	public void testSearchStudentMethod () {
+		List<Student> students =new ArrayList<Student>(Arrays.asList(createStudent()));
 		new Expectations(){{
-			studentDAO.searchStudent(student);result= students;
+			studentDAO.searchStudent(createStudent());
+			result= students;
 		}};
-		assertEquals(students, studentManager.searchStudent(student));
+		assertEquals(students, studentManager.searchStudent(createStudent()));
 	}
 	
 	@Test
 	public void testGetStudentMethod () {
-		int ident = 2;
-		Student student = new Student();
-		student.setIdent(ident);
 		new Expectations() {{
-			studentDAO.getStudent(ident); result = student;
+			studentDAO.getStudent(createStudent().getIdent()); result = createStudent();
 		}};
-		assertEquals(student, studentManager.getStudent(ident));
+		assertEquals(createStudent(), studentManager.getStudent(createStudent().getIdent()));
+	}
+	
+	public Student createStudent() {
+		Student student = new Student();
+		student.setFirstName("Test");
+		student.setLastName("Test");
+		student.setIdent(1);
+		student.setEmail("test@test.com");
+		return student;
 	}
 	
 }

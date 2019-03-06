@@ -1,12 +1,13 @@
 package data_handling.service;
 
 import java.util.List;
-import data_handling.model.Book;
+
+import data_handling.dto.BookDto;
 
 public interface BookManager {
-	public void addBook(Book book);
-	public void updateBook(Book book);
-	public void deleteBook(Book book);
-	public List<Book> searchBook(Book book);
-	public Book getBook(int ident);
+	public void addBook(BookDto bookDto);
+	public void updateBook(BookDto bookDto);
+	public void deleteBook(BookDto bookDto);
+	public List<BookDto> searchBook(BookDto bookDto);
+	public BookDto getBook(int ident);
 }

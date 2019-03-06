@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import data_handling.model.Book;
-import data_handling.model.Student;
 
 
 @Repository

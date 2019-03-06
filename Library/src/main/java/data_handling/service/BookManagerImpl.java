@@ -1,9 +1,11 @@
 package data_handling.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import data_handling.model.Book;
-//can autowired do import automatically?
 import data_handling.dao.BookDAO;
+import data_handling.dto.BookDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -13,31 +15,37 @@ import org.springframework.stereotype.Service;
 public class BookManagerImpl implements BookManager {
 	@Autowired
 	private BookDAO bookDAO;
+	@Autowired
+	private ModelDtoMapper mapper;
 	
 	@Override
 	@Transactional
-	public void addBook(Book book) {
-		bookDAO.addBook(book);
+	public void addBook(BookDto bookDto) {
+		bookDAO.addBook(mapper.bookToModel(bookDto));
 	}
 	@Override
 	@Transactional
-	public void updateBook(Book book) {
-		bookDAO.updateBook(book);
+	public void updateBook(BookDto bookDto) {
+		bookDAO.updateBook(mapper.bookToModel(bookDto));
 	}
 	@Override
 	@Transactional
-	public void deleteBook(Book book) {
-		bookDAO.deleteBook(book);
+	public void deleteBook(BookDto bookDto) {
+		bookDAO.deleteBook(mapper.bookToModel(bookDto));
 	}
 	@Override
 	@Transactional
-	public List<Book> searchBook(Book book){
-		return bookDAO.searchBook(book);
+	public List<BookDto> searchBook(BookDto bookDto){
+		List<BookDto> books = new ArrayList<BookDto>();
+		for (Book b : bookDAO.searchBook(mapper.bookToModel(bookDto))) {
+			books.add(mapper.bookToDto(b));
+		}
+		return books;
 	}
 	@Override
 	@Transactional
-	public Book getBook(int ident) {
-		return bookDAO.getBook(ident);
+	public BookDto getBook(int ident) {
+		return mapper.bookToDto(bookDAO.getBook(ident));
 	}
-
+	
 }

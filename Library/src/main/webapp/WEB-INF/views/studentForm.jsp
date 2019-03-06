@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>adding student</title>
+<title>${action} student</title>
 <style type="text/css">
 .error {
 	color: red;

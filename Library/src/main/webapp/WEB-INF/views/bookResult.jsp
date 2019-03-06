@@ -4,15 +4,19 @@
 <html>
 <%@include file="include/header.jsp"%>
 <body>
-	<h2>Submitted Student Information</h2>
+	<h2>Submitted Book Information</h2>
 	<table>
 		<tr>
 			<td>Title :</td>
-			<td>${title}</td>
+			<td>${book.title}</td>
 		</tr>
 		<tr>
 			<td>Author :</td>
-			<td>${author}</td>
+			<td>${book.author}</td>
+		</tr>
+		<tr>
+			<td>Borrower Id :</td>
+			<td>${book.borrowerId}</td>
 		</tr>
 </table>
 </body>

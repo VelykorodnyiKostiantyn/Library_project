@@ -6,14 +6,16 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import data_handling.model.Student;
+import data_handling.dto.StudentDto;
+
+
 
 @Component
 public class StudentValidator implements Validator {
 
    @Override
    public boolean supports(Class<?> c) {
-      return Student.class.equals(c);
+      return StudentDto.class.equals(c);
    }
 
    @Override
@@ -22,7 +24,7 @@ public class StudentValidator implements Validator {
       ValidationUtils.rejectIfEmpty(err, "firstName", "student.firstName.empty");
       ValidationUtils.rejectIfEmpty(err, "lastName", "student.lastName.empty");
 
-      Student student = (Student) obj;
+      StudentDto student = (StudentDto) obj;
 
       Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
             Pattern.CASE_INSENSITIVE);
