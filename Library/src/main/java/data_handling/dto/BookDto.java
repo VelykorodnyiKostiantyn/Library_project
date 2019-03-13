@@ -1,5 +1,6 @@
 package data_handling.dto;
 
+
 public class BookDto {
 
 	private int ident;
@@ -51,5 +52,21 @@ public class BookDto {
 		return this.getIdent() == bookDto.getIdent() ? true: false;
 	}
 	
+	@Override 
+	public int hashCode() {
+        return 71*ident;
+    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        BookDto book = (BookDto) obj;
+        return this.getIdent() == book.getIdent();
+
+	}
 
 }

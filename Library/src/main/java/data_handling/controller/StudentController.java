@@ -123,19 +123,19 @@ public class StudentController {
 		StudentDto student = studentManager.getStudent(form.getStudent().getIdent());
 		Set<BookDto> books= student.getBooks();
 		for (int i: form.getRemoveBooksIdent()) {
-			BookDto book = new BookDto();
-			book.setIdent(i);
+			BookDto book = bookManager.getBook(i);
+			book.setBorrowerId(0);
+			bookManager.updateBook(book);
 			books.remove(book);
 		}
 		for (int i: form.getAddBooksIdent()) {
-			BookDto book = new BookDto();
-			book.setIdent(i);
+			BookDto book = bookManager.getBook(i);
+			book.setBorrowerId(student.getIdent());
+			bookManager.updateBook(book);
 			books.add(book);
+			
 		}
 		student.setBooks(books);
-		for (BookDto b : books) {
-			System.out.println(b.getIdent());
-		}
 		studentManager.updateStudent(student);
 		return studentEditBooks(student.getIdent(), model);
 	}

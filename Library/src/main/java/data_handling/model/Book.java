@@ -54,8 +54,21 @@ public class Book {
 		this.author = author;
 	}
 	
-	public boolean equals(Book book) {
-		return this.getIdent() == book.getIdent() ? true: false;
+	@Override 
+	public int hashCode() {
+        return 61*ident;
+    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Book book = (Book) obj;
+        return this.getIdent() == book.getIdent();
+
 	}
 	
 	@Override

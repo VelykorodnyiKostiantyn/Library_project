@@ -66,8 +66,21 @@ public class Student {
 		this.books = books;
 	}
 	
-	public boolean equals(Student student) {
-		return this.getIdent() == student.getIdent() ? true: false;
+	@Override 
+	public int hashCode() {
+        return 67*ident;
+    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Student student = (Student) obj;
+        return this.getIdent() == student.getIdent();
+
 	}
 	
 	@Override

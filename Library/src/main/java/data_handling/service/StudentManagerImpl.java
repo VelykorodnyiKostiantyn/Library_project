@@ -2,8 +2,10 @@ package data_handling.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import data_handling.model.Student;
 import data_handling.dao.StudentDAO;
+import data_handling.dto.BookDto;
 import data_handling.dto.StudentDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,16 @@ public class StudentManagerImpl implements StudentManager {
 	@Override
 	@Transactional
 	public void updateStudent(StudentDto studentDto) {
+		try {
+			System.out.println(studentDto.getFirstName() + " " + studentDto.getLastName() + " " + studentDto.getEmail());
+			if (studentDto.getBooks() != null) {
+				for (BookDto b : studentDto.getBooks()) {
+					System.out.println(b.getIdent() + " " + b.getTitle() + " " + b.getAuthor() + " " + b.getBorrowerId() + " " + b.getBorrowerFirstName() + " " + b.getBorrowerLastName());	
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		studentDAO.updateStudent(mapper.studentToModel(studentDto));
 	}
 	@Override

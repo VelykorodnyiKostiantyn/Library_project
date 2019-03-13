@@ -20,7 +20,7 @@
 		<h5>Student borrowed books:</h5>
 		<form:select path="removeBooksIdent" multiple="true">
 			<c:forEach var="b" items="${form.student.books}">
-				<form:option value="${b.ident}" selected="selected">${b.title}</form:option>
+				<form:option value="${b.ident}">${b.title}</form:option>
 			</c:forEach>
 		</form:select>
 		</br>
